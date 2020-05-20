@@ -1,0 +1,35 @@
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.
+Matriz A.
+Matriz B.
+Empezando permutacion de matriz B, para B==A.
+Permutacion correcta encontrada, A=B
+Matriz A igual al la ultima permutacion.

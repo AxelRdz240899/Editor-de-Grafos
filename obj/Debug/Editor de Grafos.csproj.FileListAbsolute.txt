@@ -1,0 +1,74 @@
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Documents\Proyectos C#\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Desktop\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\GRafos\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+D:\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+D:\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+D:\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+D:\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+D:\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+D:\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+D:\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+D:\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+D:\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+D:\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+C:\Users\narut\Desktop\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Documents\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Documents\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Documents\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Documents\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+D:\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.pdb

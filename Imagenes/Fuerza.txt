@@ -1,0 +1,126 @@
+   FORM
+
+private void FuerzaBr_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+
+            grafo2 = iso.getGrafo();
+
+            grafo.generaMatriz();
+            grafo2.generaMatriz();
+
+            foreach (var item in grafo2.ListaNodos)
+            {
+                msg += item.GSNombre + " \n";
+            }
+
+            MessageBox.Show(msg);
+
+            if(grafo.Count==grafo2.Count && grafo.FuerzaBruta(grafo.matriz, grafo2.matriz, grafo.Count))
+            {
+                msg += "Isomorfico por Fuerza Bruta\n";
+            }
+            else
+            {
+                msg += "No es Isomorfico por Fuerza Bruta\n";
+            }
+            MessageBox.Show(msg);
+          
+        }
+
+
+
+Class GRAFO
+
+ public void generaMatriz()
+        {
+            int i, j;
+            int contR, ContC;
+            matriz = new int[ListaNodos.Count, ListaNodos.Count];
+
+            for (i = 0; i < ListaNodos.Count; i++)
+            {
+                for (j = 0; j < ListaNodos.Count; j++)
+                {
+                    matriz[i,j] = 0;
+                }
+            }
+
+
+            foreach (CArista ari in ListaAristas)
+            {
+                contR = 0;
+                ContC = 0;
+                if (ari != null)
+                {
+                    if(ari.GSOrigen.visible==true&&ari.GSDestino.visible==true)
+                    {
+                        if (this.dirigido == true)
+                        {
+                            if (ari.GSDiri == true)
+                            {
+                                foreach (CNodo nod in ListaNodos)
+                                {
+                                    if (ari.GSOrigen.GSNombre == nod.GSNombre)
+                                    {
+                                        break;
+                                    }
+                                    contR++;
+                                }
+                                foreach (CNodo nod in ListaNodos)
+                                {
+                                    if (ari.GSDestino.GSNombre == nod.GSNombre)
+                                    {
+                                        break;
+                                    }
+                                    ContC++;
+                                }
+                                matriz[contR, ContC] = 1;
+                            }
+                            else
+                            {
+                                foreach (CNodo nod in ListaNodos)
+                                {
+                                    if (ari.GSOrigen.GSNombre == nod.GSNombre)
+                                    {
+                                        break;
+                                    }
+                                    contR++;
+                                }
+                                foreach (CNodo nod in ListaNodos)
+                                {
+                                    if (ari.GSDestino.GSNombre == nod.GSNombre)
+                                    {
+                                        break;
+                                    }
+                                    ContC++;
+                                }
+                                matriz[ContC, contR] = 1;
+                                matriz[contR, ContC] = 1;
+                            }
+                        }
+                        else
+                        {
+                            foreach (CNodo nod in ListaNodos)
+                            {
+                                if (ari.GSOrigen.GSNombre == nod.GSNombre)
+                                {
+                                    break;
+                                }
+                                contR++;
+                            }
+                            foreach (CNodo nod in ListaNodos)
+                            {
+                                if (ari.GSDestino.GSNombre == nod.GSNombre)
+                                {
+                                    break;
+                                }
+                                ContC++;
+                            }
+                            matriz[ContC, contR] = 1;
+                            matriz[contR, ContC] = 1;
+                        }
+                    }
+                }
+            }
+        }
