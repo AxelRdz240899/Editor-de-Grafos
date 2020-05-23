@@ -48,6 +48,7 @@ namespace Editor_de_Grafos
         bool CaminoCompleto = false;
         List<Arco> ArcoADibujar = null;
         bool BanderaPrimWharshall = false;
+        bool BanderaDijkstra = false;
         public Form1()
         {
             InitializeComponent();
@@ -872,6 +873,7 @@ namespace Editor_de_Grafos
                 }
                 foreach(Arco a in Relaciones)
                 {
+
                     //MessageBox.Show("Relación de: " + a.Origen + " a : " + a.Destino);
                     ArcoADibujar.Add(a);
                     Form1_Paint(this, null);
@@ -881,14 +883,30 @@ namespace Editor_de_Grafos
                     }
                     Delay = 0;
                 }
+                if (BanderaDijkstra)
+                {
+                    CadAux += "RUTA MÁS CORTA CON DIJKSTRA\n\n\t";
+                }
                 for (int i = 0; i < l.Count - 1; i++)
                 {
                     CadAux += l[i] + "-";
                 }
                 CadAux += l[l.Count - 1];
+                if (BanderaDijkstra)
+                {
+                    int Costo = 0;
+                    int[,] matrizPesos = grafo.GeneraMatrizPesos();
+                    foreach(Arco a in Relaciones)
+                    {
+                        Costo += matrizPesos[a.Origen - 1, a.Destino - 1];
+                    }
+                    CadAux += "\n\nCon un costo de: " + Costo;
+                    
+                }
                 MessageBox.Show(CadAux);
                 CadAux = "";
             }
+            BanderaDijkstra = false;
             ArcoADibujar = new List<Arco>();
             banderaCamino = false;
             IdentificadorCamino = -1;
@@ -968,14 +986,36 @@ namespace Editor_de_Grafos
         private void dijkstraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int[,] MatrizPesos = grafo.GeneraMatrizPesos();
-            Algoritmos.AlgoritmoDijkstra(0, MatrizPesos, grafo.Nodos.Count);
+            if (NodoCamino1 != -1)
+            {
+                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, MatrizPesos,NodoCamino1 - 1);
+                Caminos = Dijkstra.ALgoritmoDIjkstra();
+                BanderaDijkstra = true;
+                if(Caminos.Count != 0)
+                {
+                    PintaCamino();
+                }
+                //NodoCamino1 = -1;
+            }
+            else
+            {
+                MessageBox.Show("Tienes que escoger un nodo primero");
+            }
         }
 
         private void primToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Caminos = Algoritmos.primMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count);
-            BanderaPrimWharshall = true;
-            PintaCamino();
+            if(NodoCamino1 != -1)
+            {
+                Caminos = Algoritmos.primMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count, NodoCamino1 - 1);
+                BanderaPrimWharshall = true;
+                PintaCamino();
+            }
+            else
+            {
+                MessageBox.Show("Tienes que escoger un nodo primero");
+            }
+            
         }
 
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)

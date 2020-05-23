@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algoritmo.cs" />
+    <Compile Include="DijkstraAxel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

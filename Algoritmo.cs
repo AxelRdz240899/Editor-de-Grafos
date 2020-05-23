@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Net.Http.Headers;
 
 namespace Editor_de_Grafos
 {
@@ -15,6 +16,7 @@ namespace Editor_de_Grafos
         private List<Nodo> k, m;
         String RutaResultado = "";
         int NumPermutacionTranspuesta = 0;
+        int INF = 100000;
         public Algoritmo()
         {
             //m_form = new Matriz();
@@ -830,60 +832,6 @@ namespace Editor_de_Grafos
 
 
 
-
-        #region Algoritmos Ultima Entrega
-
-        #region Dijkstra
-        public void AlgoritmoDijkstra(int NumeroNodoInicio, int[,] MatrizPesos, int NumeroNodos)
-        {
-            int[] distance = new int[NumeroNodos];
-            bool[] shortestPathTreeSet = new bool[NumeroNodos];
-
-            for (int i = 0; i < NumeroNodos; ++i)
-            {
-                distance[i] = int.MaxValue;
-                shortestPathTreeSet[i] = false;
-            }
-            distance[NumeroNodoInicio] = 0;
-
-            for (int count = 0; count < NumeroNodos - 1; ++count)
-            {
-                int u = MinimumDistance(distance, shortestPathTreeSet, NumeroNodos);
-                shortestPathTreeSet[u] = true;
-                for (int v = 0; v < NumeroNodos; ++v)
-                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(MatrizPesos[u, v]) && distance[u] != int.MaxValue && distance[u] + MatrizPesos[u, v] < distance[v])
-                        distance[v] = distance[u] + MatrizPesos[u, v];
-            }
-            Print(distance, NumeroNodos);
-        }
-
-
-        private static int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)
-        {
-            int min = int.MaxValue;
-            int minIndex = 0;
-
-            for (int v = 0; v < verticesCount; ++v)
-            {
-                if (shortestPathTreeSet[v] == false && distance[v] <= min)
-                {
-                    min = distance[v];
-                    minIndex = v;
-                }
-            }
-            return minIndex;
-        }
-
-        private static void Print(int[] distance, int verticesCount)
-        {
-            string Cadena = "Distancias: ";
-            for (int i = 0; i < verticesCount; ++i)
-            {
-                Cadena += (i + 1) + ":     " + distance[i].ToString() + "\n";
-            }
-            MessageBox.Show(Cadena);
-        }
-        #endregion
         #region Prim
         public int minKey(int[] key, bool[] mstSet, int NumeroNodos)
         {
@@ -922,7 +870,7 @@ namespace Editor_de_Grafos
         // Function to construct and 
         // print MST for a graph represented 
         // using adjacency matrix representation 
-        public List<List<int>> primMST(int[,] graph, int NumeroNodos)
+        public List<List<int>> primMST(int[,] graph, int NumeroNodos, int NodoSeleccionado)
         {
 
             // Array to store constructed MST 
@@ -948,7 +896,8 @@ namespace Editor_de_Grafos
             // Make key 0 so that this vertex is 
             // picked as first vertex 
             // First node is always root of MST 
-            key[0] = 0;
+            key[0] = NodoSeleccionado;
+            //MessageBox.Show(NodoSeleccionado.ToString());
             parent[0] = -1;
 
             // The MST will have V vertices 
@@ -995,8 +944,54 @@ namespace Editor_de_Grafos
 
         }
         #endregion
+        #region Kruskal
 
+        #endregion
+        #region Floyd
+        public void disp(int[,] distance, int verticesCount)
+        {
+            string CadAux = "";
+            CadAux += "Distance Matrix for Shortest Distance between the nodes\n";
+            for (int i = 0; i < verticesCount; ++i)
+            {
+                for (int j = 0; j < verticesCount; ++j)
+                {
+                    // IF THE DISTANCE TO THE NODE IS NOT DIRECTED THAN THE COST IN iNIFINITY  
 
+                    if (distance[i, j] == INF)
+                        CadAux += "INF";
+                    else
+                        CadAux += distance[i, j].ToString();
+                }
+                CadAux += "\n";
+            }
+            MessageBox.Show(CadAux);
+        }
+
+        public void FloydWarshall(int[,] graph, int verticesCount)
+        {
+            int[,] distance = new int[verticesCount, verticesCount];
+
+            for (int i = 0; i < verticesCount; ++i)
+                for (int j = 0; j < verticesCount; ++j)
+                    distance[i, j] = graph[i, j];
+
+            for (int k = 0; k < verticesCount; k++)
+            {
+                for (int i = 0; i < verticesCount; i++)
+                {
+                    for (int j = 0; j < verticesCount; j++)
+                    {
+                        if (distance[i, k] + distance[k, j] < distance[i, j])
+                            distance[i, j] = distance[i, k] + distance[k, j];
+                    }
+                }
+            }
+
+            disp(distance, verticesCount);
+            Console.ReadKey();
+
+        }
         #endregion
     }
 }
