@@ -46,10 +46,6 @@ namespace Editor_de_Grafos
             }
             //MessageBox.Show("Distancias Iniciales: ");
             Distancias[NodoOrigen] = 0;
-            foreach (int i in Distancias)
-            {
-
-            }
             for (int n = 0; n < NumNodos - 1; n++)
             {
                 int Indice = ObtenIndiceValorMinimo(Distancias, NodoVisitado);
@@ -60,10 +56,15 @@ namespace Editor_de_Grafos
                     if (!NodoVisitado[v] && MatrizRelacion[Indice, v] != INF && Distancias[Indice]
                         + MatrizRelacion[Indice, v] < Distancias[v])
                     {
+                        
                         //Console.WriteLine("He encontrado un camino menor hacia {0} desde {1}", v + 1, Indice + 1);
                         for (int i = 1; i < Caminos[Indice].Count; i++)
                         {
-                            Caminos[v].Add(Caminos[Indice][i]);
+                            if(Caminos[Indice][i] != NodoOrigen)
+                            {
+                                Caminos[v].Add(Caminos[Indice][i]);
+                            }
+                            
                         }
                         Caminos[v].Add(Indice);
                         Distancias[v] = Distancias[Indice] + MatrizRelacion[Indice, v];
@@ -100,7 +101,6 @@ namespace Editor_de_Grafos
             //ImprimeDistancias(Distancias);
             return Caminos;
         }
-
         public int ObtenIndiceValorMinimo(int[] ArregloDistancias, bool[] NodosVisitados)
         {
             int min = INF, min_index = -1;

@@ -47,8 +47,9 @@ namespace Editor_de_Grafos
         int IndiceVerticeMostrar = -1;
         bool CaminoCompleto = false;
         List<Arco> ArcoADibujar = null;
-        bool BanderaPrimWharshall = false;
+        bool BanderaPrim = false;
         bool BanderaDijkstra = false;
+        PrimAxel Prim;
         public Form1()
         {
             InitializeComponent();
@@ -197,7 +198,7 @@ namespace Editor_de_Grafos
             {
                 DibujaCamino(GeneraListaRelacionesCamino(Caminos));
             }*/
-            
+
         }
         public void DibujaCamino(List<Arco> AuxCaminos)
         {
@@ -216,7 +217,7 @@ namespace Editor_de_Grafos
 
         public void DibujaArco(List<Arco> a)
         {
-            if(a != null)
+            if (a != null)
             {
                 foreach (Arco ar in a)
                 {
@@ -244,7 +245,7 @@ namespace Editor_de_Grafos
         public List<Arco> GeneraListaRelacionesPrim(List<List<int>> Caminos)
         {
             List<Arco> AuxPrim = new List<Arco>();
-            for(int i = 0; i < Caminos[IdentificadorCamino].Count - 1; i += 2)
+            for (int i = 0; i < Caminos[IdentificadorCamino].Count - 1; i += 2)
             {
                 Arco Arc = new Arco();
                 Arc.Origen = Caminos[IdentificadorCamino][i];
@@ -820,7 +821,7 @@ namespace Editor_de_Grafos
         {
             try
             {
-                
+
                 if (NodoCamino1 != -1 || NodoCamino2 != -1)
                 {
                     Caminos = Algoritmos.CaminosSimples(NodoCamino1 - 1, NodoCamino2 - 1, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
@@ -862,22 +863,22 @@ namespace Editor_de_Grafos
             {
                 ArcoADibujar = new List<Arco>();
                 IdentificadorCamino++;
-                if (BanderaPrimWharshall)
-                {
-                    Relaciones = GeneraListaRelacionesPrim(Caminos);
-                    BanderaPrimWharshall = false;
-                }
-                else
-                {
-                    Relaciones = GeneraListaRelacionesCamino(Caminos);
-                }
-                foreach(Arco a in Relaciones)
+                //if (BanderaPrimWharshall)
+                //{
+                // Relaciones = GeneraListaRelacionesPrim(Caminos);
+                //BanderaPrimWharshall = false;
+                //}
+                //else
+                //{
+                Relaciones = GeneraListaRelacionesCamino(Caminos);
+                //}
+                foreach (Arco a in Relaciones)
                 {
 
                     //MessageBox.Show("Relación de: " + a.Origen + " a : " + a.Destino);
                     ArcoADibujar.Add(a);
                     Form1_Paint(this, null);
-                    while(Delay < 150000000)
+                    while (Delay < 140000000)
                     {
                         Delay++;
                     }
@@ -896,14 +897,22 @@ namespace Editor_de_Grafos
                 {
                     int Costo = 0;
                     int[,] matrizPesos = grafo.GeneraMatrizPesos();
-                    foreach(Arco a in Relaciones)
+                    foreach (Arco a in Relaciones)
                     {
                         Costo += matrizPesos[a.Origen - 1, a.Destino - 1];
                     }
                     CadAux += "\n\nCon un costo de: " + Costo;
-                    
+
                 }
                 MessageBox.Show(CadAux);
+                if (BanderaPrim)
+                {
+                    string CadPrim = "*********************PRIM*******************\n" +
+                        "\t\tCosto total del árbol: " + Prim.CostoTotal;
+
+                    MessageBox.Show(CadPrim);
+                    BanderaPrim = false;
+                }
                 CadAux = "";
             }
             BanderaDijkstra = false;
@@ -988,14 +997,13 @@ namespace Editor_de_Grafos
             int[,] MatrizPesos = grafo.GeneraMatrizPesos();
             if (NodoCamino1 != -1)
             {
-                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, MatrizPesos,NodoCamino1 - 1);
+                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, MatrizPesos, NodoCamino1 - 1);
                 Caminos = Dijkstra.ALgoritmoDIjkstra();
                 BanderaDijkstra = true;
-                if(Caminos.Count != 0)
+                if (Caminos.Count != 0)
                 {
                     PintaCamino();
                 }
-                //NodoCamino1 = -1;
             }
             else
             {
@@ -1005,17 +1013,30 @@ namespace Editor_de_Grafos
 
         private void primToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(NodoCamino1 != -1)
+            if (NodoCamino1 != -1)
             {
-                Caminos = Algoritmos.primMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count, NodoCamino1 - 1);
-                BanderaPrimWharshall = true;
-                PintaCamino();
+                Prim = new PrimAxel(grafo.Nodos.Count, grafo.GeneraMatrizPesos(), NodoCamino1 - 1);
+                Caminos.Clear();
+                Caminos.Add(new List<int>());
+                Caminos[0] = new List<int>();
+                Caminos[0] = Prim.Prim();
+                if (Caminos[0].Count != 0)
+                {
+                    BanderaPrim = true;
+                    PintaCamino();
+                }
             }
             else
             {
                 MessageBox.Show("Tienes que escoger un nodo primero");
             }
-            
+
+        }
+
+        private void kruskalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Kruskal kruskal = new Kruskal();
+            kruskal.kruskalMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count);
         }
 
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)

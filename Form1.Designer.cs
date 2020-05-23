@@ -302,6 +302,7 @@
             this.kruskalToolStripMenuItem.Name = "kruskalToolStripMenuItem";
             this.kruskalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kruskalToolStripMenuItem.Text = "Kruskal";
+            this.kruskalToolStripMenuItem.Click += new System.EventHandler(this.kruskalToolStripMenuItem_Click);
             // 
             // BT_AgregarNodo
             // 

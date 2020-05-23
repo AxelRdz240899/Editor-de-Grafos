@@ -62,7 +62,9 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="Grafo.cs" />
+    <Compile Include="Kruskal.cs" />
     <Compile Include="Nodo.cs" />
+    <Compile Include="PrimAxel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arco.cs" />
