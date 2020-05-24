@@ -50,9 +50,11 @@ namespace Editor_de_Grafos
         bool BanderaPrim = false;
         bool BanderaDijkstra = false;
         bool BanderaKruskal = false;
+        bool BanderaFloyd = false;
         PrimAxel Prim;
         Kruskal k;
         Floyd F;
+        DijkstraAxel Dijkstra;
         public Form1()
         {
             InitializeComponent();
@@ -243,6 +245,33 @@ namespace Editor_de_Grafos
                 AuxCaminos.Add(arc);
             }
             return AuxCaminos;
+        }
+
+        public List<Arco> GeneraRelacionesUnCamino(List<int> Camino, Grafo G)
+        {
+            List<Arco> AuxCaminos = new List<Arco>();
+            for (int j = 0; j < Camino.Count - 1; j++)
+            {
+                /*Arco arc = new Arco();
+                arc.Origen = Camino[j];
+                arc.Destino = Camino[j + 1];*/
+                Arco Relacion = G.BuscaRelacion(Camino[j], Camino[j + 1]);
+                if (Relacion != null)
+                {
+                    AuxCaminos.Add(Relacion);
+                }
+            }
+            return AuxCaminos;
+        }
+
+        public int ObtenPesoCamino(List<Arco> Camino)
+        {
+            int Peso = 0;
+            foreach (Arco a in Camino)
+            {
+                Peso += a.Peso;
+            }
+            return Peso;
         }
 
         public List<Arco> GeneraListaRelacionesPrim(List<List<int>> Caminos)
@@ -733,29 +762,33 @@ namespace Editor_de_Grafos
                     MessageBox.Show("El grafo no es ciclico");
                 }
             }
-            else if(grafo.Dirigido == false)
+            else if (grafo.Dirigido == false)
             {
-                bool Res = false;
-                for(int i = 0; i < grafo.Nodos.Count; i++)
+                bool[] Res = new bool[grafo.Nodos.Count];
+                for (int i = 0; i < grafo.Nodos.Count; i++)
                 {
-                    Res = Algoritmos.GrafoContieneCiclo(i, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
-                    
-                    if (Res)
-                    {
-                        Count++;
-                    }
-                    Res = false;
+                    Res[i] = Algoritmos.GrafoContieneCiclo(i, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
                 }
-                if (Count >= grafo.Nodos.Count)
+                bool Ciclico = true;
+                foreach (bool b in Res)
                 {
-                    MessageBox.Show("El grafo es ciclico");
+                    if (b == false)
+                    {
+                        Ciclico = false;
+                        break;
+                    }
+                }
+                if (Ciclico)
+                {
+                    MessageBox.Show("El grafo es ciclico ");
                 }
                 else
                 {
                     MessageBox.Show("El grafo no es ciclico");
                 }
+
             }
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -899,7 +932,7 @@ namespace Editor_de_Grafos
                 }
                 else
                 {
-                Relaciones = GeneraListaRelacionesCamino(Caminos);
+                    Relaciones = GeneraListaRelacionesCamino(Caminos);
                 }
                 foreach (Arco a in Relaciones)
                 {
@@ -921,6 +954,10 @@ namespace Editor_de_Grafos
                 {
                     CadAux += "***********ARBOL DE COSTO MÍNIMO CON KRUSKAL**************\n\n\t";
                 }
+                if (BanderaFloyd)
+                {
+                    CadAux += "********RUTA MÁS CORTA CON FLOYD*******\n\n\t";
+                }
                 for (int i = 0; i < l.Count - 1; i++)
                 {
                     CadAux += l[i] + "-";
@@ -941,6 +978,11 @@ namespace Editor_de_Grafos
                 {
                     CadAux += "\n\t Costo total del árbol: " + k.CostoMinimo;
                     BanderaKruskal = false;
+                }
+                if (BanderaFloyd)
+                {
+                    CadAux += "\n\t Costo total del camino: " + ObtenPesoCamino(GeneraRelacionesUnCamino(Caminos[0], grafo));
+                    BanderaFloyd = false;
                 }
                 MessageBox.Show(CadAux);
                 if (BanderaPrim)
@@ -1035,8 +1077,9 @@ namespace Editor_de_Grafos
             int[,] Pesos = grafo.GeneraMatrizPesos();
             if (NodoCamino1 != -1)
             {
-                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, Pesos, NodoCamino1 - 1);
+                Dijkstra = new DijkstraAxel(grafo.Nodos.Count, Pesos, NodoCamino1 - 1);
                 Caminos = Dijkstra.ALgoritmoDIjkstra();
+                GeneraCaminoDijkstra();
                 BanderaDijkstra = true;
                 if (Caminos.Count != 0)
                 {
@@ -1074,11 +1117,11 @@ namespace Editor_de_Grafos
         private void kruskalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BanderaKruskal = true;
-            k = new Kruskal(grafo.Nodos.Count,grafo.GeneraMatrizPesos());
+            k = new Kruskal(grafo.Nodos.Count, grafo.GeneraMatrizPesos());
             Caminos.Clear();
             Caminos.Add(new List<int>());
             Caminos[0] = k.kruskalMST();
-            if(Caminos[0].Count > 0)
+            if (Caminos[0].Count > 0)
             {
                 PintaCamino();
             }
@@ -1087,18 +1130,102 @@ namespace Editor_de_Grafos
 
         private void floydToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(NodoCamino1 != -1 || NodoCamino2 != -1)
+            BanderaFloyd = true;
+            if (NodoCamino1 != -1 || NodoCamino2 != -1)
             {
+                Caminos.Clear();
                 F = new Floyd(grafo.Nodos.Count, grafo.GeneraMatrizPesos());
-                F.ObtenCaminosNodo(NodoCamino1 - 1, NodoCamino2 - 1);
+                Caminos = Algoritmos.CaminosSimples(NodoCamino1 - 1, NodoCamino2 - 1, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
+                if(Caminos.Count > 0)
+                {
+                    GeneraCaminoFloyd();
+                    if (Caminos[0].Count > 0)
+                    {
+                        PintaCamino();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay camino");
+                }
             }
             else
             {
                 MessageBox.Show("Primero tienes que escoger los nodos");
             }
-           
-        }
 
+        }
+        public void GeneraCaminoFloyd()
+        {
+            List<int> CaminoAmostrar = new List<int>();
+            int Costo = F.BuscaPesoCaminoMasCorto(NodoCamino1 - 1, NodoCamino2 - 1);
+            FormateaCaminos(Caminos);
+            foreach (List<int> c in Caminos)
+            {
+                List<Arco> Camino = GeneraRelacionesUnCamino(c, grafo);
+                int Peso = ObtenPesoCamino(Camino);
+                if (Peso == Costo)
+                {
+                    CaminoAmostrar = c;
+                    break;
+                }
+            }
+            if (CaminoAmostrar.Count != 0)
+            {
+                Caminos.Clear();
+                Caminos.Add(CaminoAmostrar);
+            }
+        }
+        public void GeneraCaminoDijkstra()
+        {
+            Caminos.Clear();
+            int[] AuxDist = Dijkstra.Distancias;
+            foreach(int i in AuxDist)
+            {
+                MessageBox.Show("Distancia: " + i);
+            }
+            List<List<int>> ListaAuxiliar = new List<List<int>>();
+            for(int i = 0; i < grafo.Nodos.Count; i++)
+            {
+                //MessageBox.Show("Caminos del nodo: " + (i + 1));
+                ListaAuxiliar = Algoritmos.CaminosSimples(NodoCamino1 - 1, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
+                FormateaCaminos(ListaAuxiliar);
+                //MessageBox.Show(ListaAuxiliar.Count.ToString());
+                if (ListaAuxiliar.Count > 0)
+                {
+                    foreach (List<int> c in ListaAuxiliar)
+                    {
+                        List<Arco> Camino = GeneraRelacionesUnCamino(c, grafo);
+
+                        int peso = ObtenPesoCamino(Camino);
+                        //MessageBox.Show("PESO: " + peso + " AuxDist: " + AuxDist[i] + "en I:" + i);
+                        
+                        //MessageBox.Show("PESO: " + peso);
+                        if (peso == AuxDist[i])
+                        {
+                            //MessageBox.Show("Agregando camino de nodo: " + (i + 1) + " con peso de: " + peso);
+                            //MessageBox.Show("Estos pesos concuerdan: " + peso);
+                            Caminos.Add(c);
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        public void FormateaCaminos(List<List<int>> Caminos)
+        {
+            if (Caminos.Count != 0)
+            {
+                for (int i = 0; i < Caminos.Count; i++)
+                {
+                    for (int j = 0; j < Caminos[i].Count; j++)
+                    {
+                        Caminos[i][j] = Caminos[i][j] + 1;
+                    }
+                }
+            }
+        }
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)
         {
             TipoOperacion = 2;

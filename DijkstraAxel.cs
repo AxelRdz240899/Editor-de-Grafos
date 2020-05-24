@@ -13,7 +13,7 @@ namespace Editor_de_Grafos
         int NumNodos;
         int[,] MatrizRelacion;
         int NodoOrigen = -1;
-
+        public int [] Distancias;
         public DijkstraAxel(int N, int[,] MR, int Origen)
         {
             NumNodos = N;
@@ -29,13 +29,14 @@ namespace Editor_de_Grafos
             }
             MatrizRelacion = MR;
             NodoOrigen = Origen;
+            Distancias = new int[NumNodos];
             //ALgoritmoDIjkstra();
         }
 
         public List<List<int>> ALgoritmoDIjkstra()
         {
             bool[] NodoVisitado = new bool[NumNodos];
-            int[] Distancias = new int[NumNodos];
+            Distancias = new int[NumNodos];
             List<List<int>> Caminos = new List<List<int>>();
             for (int i = 0; i < NumNodos; i++)
             {
@@ -98,7 +99,7 @@ namespace Editor_de_Grafos
                     Caminos.RemoveAt(i);
                 }
             }
-            ImprimeDistancias(Distancias);
+            ImprimeDistancias();
             return Caminos;
         }
         public int ObtenIndiceValorMinimo(int[] ArregloDistancias, bool[] NodosVisitados)
@@ -115,7 +116,7 @@ namespace Editor_de_Grafos
             return min_index;
         }
 
-        public void ImprimeDistancias(int[] Distancias)
+        public void ImprimeDistancias()
         {
             string CADAUX = "\t**************ALGORITMO DE DIJKSTRA**************\n";
             for (int i = 0; i < Distancias.Length; i++)

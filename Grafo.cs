@@ -252,6 +252,25 @@ namespace Editor_de_Grafos
             }
         }
 
+        public Arco BuscaRelacion(int Origen, int Destino)
+        {
+            Arco Relacion = null;
+            foreach(Nodo n in Nodos)
+            {
+                if(n.Identificador == Origen)
+                {
+                    foreach(Arco r in n.Relaciones)
+                    {
+                        if(r.Destino == Destino)
+                        {
+                            Relacion = r;
+                            break;
+                        }
+                    }
+                }
+            }
+            return Relacion;
+        }
         public int ObtenNumeroVisitasRestantes()
         {
             int Sum = 0;

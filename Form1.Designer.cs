@@ -150,14 +150,14 @@
             // adyacenciaToolStripMenuItem
             // 
             this.adyacenciaToolStripMenuItem.Name = "adyacenciaToolStripMenuItem";
-            this.adyacenciaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adyacenciaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.adyacenciaToolStripMenuItem.Text = "Adyacencia";
             this.adyacenciaToolStripMenuItem.Click += new System.EventHandler(this.AdyacenciaToolStripMenuItem_Click);
             // 
             // pesosToolStripMenuItem
             // 
             this.pesosToolStripMenuItem.Name = "pesosToolStripMenuItem";
-            this.pesosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pesosToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.pesosToolStripMenuItem.Text = "Pesos";
             this.pesosToolStripMenuItem.Click += new System.EventHandler(this.PesosToolStripMenuItem_Click);
             // 
@@ -241,21 +241,21 @@
             // caminosSimplesToolStripMenuItem
             // 
             this.caminosSimplesToolStripMenuItem.Name = "caminosSimplesToolStripMenuItem";
-            this.caminosSimplesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.caminosSimplesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.caminosSimplesToolStripMenuItem.Text = "Caminos Simples";
             this.caminosSimplesToolStripMenuItem.Click += new System.EventHandler(this.caminosSimplesToolStripMenuItem_Click);
             // 
             // circuitoEulerToolStripMenuItem
             // 
             this.circuitoEulerToolStripMenuItem.Name = "circuitoEulerToolStripMenuItem";
-            this.circuitoEulerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.circuitoEulerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.circuitoEulerToolStripMenuItem.Text = "Camino Euler";
             this.circuitoEulerToolStripMenuItem.Click += new System.EventHandler(this.circuitoEulerToolStripMenuItem_Click);
             // 
             // circuitoEulerToolStripMenuItem1
             // 
             this.circuitoEulerToolStripMenuItem1.Name = "circuitoEulerToolStripMenuItem1";
-            this.circuitoEulerToolStripMenuItem1.Size = new System.Drawing.Size(165, 22);
+            this.circuitoEulerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.circuitoEulerToolStripMenuItem1.Text = "Circuito_Euler";
             this.circuitoEulerToolStripMenuItem1.Click += new System.EventHandler(this.circuitoEulerToolStripMenuItem1_Click);
             // 
