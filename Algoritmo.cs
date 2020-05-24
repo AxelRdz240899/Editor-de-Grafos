@@ -615,6 +615,37 @@ namespace Editor_de_Grafos
             return caminos;
         }
 
+        public bool GrafoContieneCiclo(int n1, int n2, int[,]MR, int count)
+        {
+            List<List<int>> caminos = new List<List<int>>();
+            for (int i = 0; i < count; i++)
+                if (MR[n1, i] == 1)
+                    GeneraCamino(caminos, new List<int> { n1 }, i, n2, MR, count);
+
+            if (n1 == n2)//para circuitos
+            {
+                int limpiando = caminos.Count;
+                while (limpiando != 0)
+                {
+                    for (int i = 0; i < caminos.Count; i++)
+                        if (caminos[i].Count < 4)
+                        {
+                            caminos.RemoveAt(i);
+                            break;
+                        }
+                    limpiando--;
+                }
+            }
+            if(caminos.Count > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void GeneraCamino(List<List<int>> caminos, List<int> camino, int n1, int n2, int[,] MR, int count)
         {
             if (camino.Contains(n1))
@@ -829,7 +860,108 @@ namespace Editor_de_Grafos
                 circuito.Add(Aux);
             }
         }
+        #region Kruskal
+        public void KruskalMST(Grafo g)
+        {
+            Grafo Aux = new Grafo();
+            List<Arco> Arcos = new List<Arco>();
+            List<Arco> RelacionesArbolKruskal = new List<Arco>();
+            foreach (Nodo n in g.Nodos)
+            {
+                foreach(Arco r in n.Relaciones)
+                {
+                    Arcos.Add(r);
+                }
+            }
+            Arcos = Arcos.OrderBy(x => x.Peso).ToList();
+            string CadAux = "Relaciones Ordenadas por el peso\n";
+            for(int i = 0; i < g.Nodos.Count; i++)
+            {
+                bool Ciclo = false;
+                Arco RelacionMenor = BuscaRelacionMenorKruskal(Arcos);
+                for(int j = 0; j < Aux.Nodos.Count; j++)
+                {
+                    if (GrafoContieneCiclo(j, j, Aux.GeneraMatrizAdyacencia(), Aux.Nodos.Count))
+                    {
+                        Ciclo = true;
+                        break;
+                    }
+                }
+                if (!Ciclo)
+                {
+                    if(!ConfirmaExistenciaNodosEnKruskal(Aux, RelacionMenor.Origen))
+                    {
+                        Nodo Nuevo = new Nodo();
+                        Nuevo.Identificador = RelacionMenor.Origen;
+                        Aux.AgregarNodo(Nuevo);
+                    }
+                    else if(!ConfirmaExistenciaNodosEnKruskal(Aux, RelacionMenor.Destino))
+                    {
+                        Nodo Nuevo = new Nodo();
+                        Nuevo.Identificador = RelacionMenor.Destino;
+                        Aux.AgregarNodo(Nuevo);
+                    }
+                    int IndiceNodoCrearRelacion = ObtenIndiceNodo(Aux, RelacionMenor.Origen);
+                    int IndiceNodoRelacionDestino = ObtenIndiceNodo(Aux, RelacionMenor.Destino);
+                    if(IndiceNodoCrearRelacion != -1)
+                    {
+                        if (Aux.Nodos[IndiceNodoCrearRelacion].TieneRelacion(0))
+                        {
 
+                        }
+                        Aux.Nodos[IndiceNodoCrearRelacion].AñadirRelacion(RelacionMenor.Destino, RelacionMenor.Peso);
+                    }
+                }
+            }
+            /*foreach(Arco a in Arcos)
+            {
+                CadAux += "Origen: " + a.Origen + " , Destino: " + a.Destino + " , Peso: " + a.Peso + "\n";
+            }*/
+            MessageBox.Show(CadAux);
+        }
+
+        public Arco BuscaRelacionMenorKruskal(List<Arco> Arcos)
+        {
+            return null;
+        }
+
+        public int ObtenIndiceNodo(Grafo g, int IdentificadorNodo)
+        {
+            int Indice = -1;
+
+            for(int i = 0; i < g.Nodos.Count; i++)
+            {
+                if(g.Nodos[i].Identificador == IdentificadorNodo)
+                {
+                    Indice = i;
+                }
+            }
+            return Indice;
+        }
+
+        public bool ConfirmaExistenciaNodosEnKruskal(Grafo g, int identificador)
+        {
+            bool Nodo1 = false ;
+            for(int i = 0; i < g.Nodos.Count; i++)
+            {
+                if(g.Nodos[i].Identificador == identificador)
+                {
+                    Nodo1 = true;
+                    break;
+                }
+            }
+            return Nodo1;
+        }
+        public int[,] GeneraMatrizRelacionKruskal(int Tamaño, List<Arco> Relaciones)
+        {
+            int[,] MatrizAdyacencia = new int[Tamaño, Tamaño];
+            foreach(Arco r in Relaciones)
+            {
+
+            }
+            return MatrizAdyacencia;
+        }
+        #endregion
         #region Floyd
         public void disp(int[,] distance, int verticesCount)
         {

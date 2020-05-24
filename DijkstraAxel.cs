@@ -98,7 +98,7 @@ namespace Editor_de_Grafos
                     Caminos.RemoveAt(i);
                 }
             }
-            //ImprimeDistancias(Distancias);
+            ImprimeDistancias(Distancias);
             return Caminos;
         }
         public int ObtenIndiceValorMinimo(int[] ArregloDistancias, bool[] NodosVisitados)
@@ -117,18 +117,20 @@ namespace Editor_de_Grafos
 
         public void ImprimeDistancias(int[] Distancias)
         {
+            string CADAUX = "\t**************ALGORITMO DE DIJKSTRA**************\n";
             for (int i = 0; i < Distancias.Length; i++)
             {
                 if(Distancias[i] != INF)
                 {
-                    MessageBox.Show("Distancia mínima desde " + (NodoOrigen + 1) + "  hacía: " + (i + 1) + "   es de: " + Distancias[i]);
+                    CADAUX += "\t     Distancia mínima desde " + (NodoOrigen + 1) + "  hacía: " + (i + 1) + "   es de: " + Distancias[i] + "\n";
                 }
                 else
                 {
-                    MessageBox.Show("Distancia mínima  desde " + (NodoOrigen + 1)  + "  hacía: " + (i + 1) + "   no existe");
+                    CADAUX += "\t     Distancia mínima desde " + (NodoOrigen + 1)  + "  hacía: " + (i + 1) + "   no existe" + "\n";
                 }
                 
             }
+            MessageBox.Show(CADAUX);
         }
     }
 }

@@ -9,57 +9,66 @@ namespace Editor_de_Grafos
 {
     class Kruskal
     {
-        public int V, INT_MAX = 99999;
-        public int[] parent;
-
-        // Find set of vertex i 
-        int find(int i)
+        public int NumNodos;
+        public int[] NodosPadre;
+        public int INF = 100000;
+        public int[,] cost;
+        public int CostoMinimo = 0;
+        public Kruskal(int NumNodos, int[,] MatrizPesos) // Constructor del Objeto
         {
-            while (parent[i] != i)
-                i = parent[i];
+            this.NumNodos = NumNodos;
+            cost = MatrizPesos;
+            NodosPadre = new int[NumNodos];
+            for(int i = 0; i < NumNodos; i++)
+            {
+                for(int j = 0; j < NumNodos; j++)
+                {
+                    if(cost[i,j] == 0)
+                    {
+                        cost[i, j] = INF;
+                    }
+                }
+            }
+            //kruskalMST();
+        }
+
+        // Encuentra el Vertex i en el arreglo de vertices
+        private int EncuentraNodo(int i)
+        {
+            while (NodosPadre[i] != i)
+                i = NodosPadre[i];
             return i;
         }
 
         // Does union of i and j. It returns 
         // false if i and j are already in same 
-        // set. 
-        void union1(int i, int j)
+        // set. Este método checa si ya existe la relación entre 2 nodos. 
+        private void union1(int i, int j)
         {
-            int a = find(i);
-            int b = find(j);
-            parent[a] = b;
+            int a = EncuentraNodo(i);
+            int b = EncuentraNodo(j);
+            NodosPadre[a] = b;
         }
 
-        // Finds MST using Kruskal's algorithm 
-        public void kruskalMST(int[,] cost, int count)
+        // Método para encontrar el árbol de menor costo usando el algoritmo de Kruskal
+        public  List<int> kruskalMST()
         {
-            for (int i = 0; i < count; i++)
-            {
-                for (int j = 0; j < count; j++)
-                {
-                    if (cost[i, j] == 0)
-                    {
-                        cost[i, j] = INT_MAX;
-                    }
-                }
-            }
-            int mincost = 0; // Cost of min MST. 
-            V = count;
-            parent = new int[count];
+            int mincost = 0; // NumNodosarialb 
+            List<int> ArbolKruskal = new List<int>();
             // Initialize sets of disjoint sets. 
-            for (int i = 0; i < V; i++)
-                parent[i] = i;
-
+            for (int i = 0; i < NumNodos; i++)
+                NodosPadre[i] = i;
+            string CadAux = "ARBOL DE MENOR COSTO (KRUSKAL)\n";
             // Include minimum weight edges one by one 
             int edge_count = 0;
-            while (edge_count < V)
+            while (edge_count < NumNodos - 1)
             {
-                int min = INT_MAX, a = -1, b = -1;
-                for (int i = 0; i < V; i++)
+                int min = INF, a = -1, b = -1;
+                for (int i = 0; i < NumNodos; i++)
                 {
-                    for (int j = 0; j < V; j++)
+                    for (int j = 0; j < NumNodos; j++)
                     {
-                        if (find(i) != find(j) && cost[i, j] < min)
+                        if (EncuentraNodo(i) != EncuentraNodo(j) && cost[i, j] < min)
                         {
                             min = cost[i, j];
                             a = i;
@@ -69,10 +78,15 @@ namespace Editor_de_Grafos
                 }
 
                 union1(a, b);
-                MessageBox.Show("Relacion" + (edge_count + 1) + ": (" + a + ", " + b + ") costo:" + min);
+                ArbolKruskal.Add(a + 1);
+                ArbolKruskal.Add(b + 1);
+                CadAux += "Relacion : " + edge_count++ + " :(" + a + " , " + b + ")" + " costo: " + min + "\n";
                 mincost += min;
             }
-            MessageBox.Show("Costo minimo: " + mincost);
+            CadAux += "Costo minimo: " + mincost + "\n";
+            MessageBox.Show(CadAux);
+            CostoMinimo = mincost;
+            return ArbolKruskal;
         }
     }
 }

@@ -49,7 +49,10 @@ namespace Editor_de_Grafos
         List<Arco> ArcoADibujar = null;
         bool BanderaPrim = false;
         bool BanderaDijkstra = false;
+        bool BanderaKruskal = false;
         PrimAxel Prim;
+        Kruskal k;
+        Floyd F;
         public Form1()
         {
             InitializeComponent();
@@ -718,14 +721,41 @@ namespace Editor_de_Grafos
 
         private void esCicloToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (grafo.EsCiclo())
+            int Count = 0;
+            if (grafo.Dirigido == true)
             {
-                MessageBox.Show("El grafo es ciclico");
+                if (grafo.EsCiclo())
+                {
+                    MessageBox.Show("El grafo es ciclico");
+                }
+                else
+                {
+                    MessageBox.Show("El grafo no es ciclico");
+                }
             }
-            else
+            else if(grafo.Dirigido == false)
             {
-                MessageBox.Show("El grafo no es ciclico");
+                bool Res = false;
+                for(int i = 0; i < grafo.Nodos.Count; i++)
+                {
+                    Res = Algoritmos.GrafoContieneCiclo(i, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
+                    
+                    if (Res)
+                    {
+                        Count++;
+                    }
+                    Res = false;
+                }
+                if (Count >= grafo.Nodos.Count)
+                {
+                    MessageBox.Show("El grafo es ciclico");
+                }
+                else
+                {
+                    MessageBox.Show("El grafo no es ciclico");
+                }
             }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -863,15 +893,14 @@ namespace Editor_de_Grafos
             {
                 ArcoADibujar = new List<Arco>();
                 IdentificadorCamino++;
-                //if (BanderaPrimWharshall)
-                //{
-                // Relaciones = GeneraListaRelacionesPrim(Caminos);
-                //BanderaPrimWharshall = false;
-                //}
-                //else
-                //{
+                if (BanderaKruskal)
+                {
+                    Relaciones = GeneraListaRelacionesPrim(Caminos);
+                }
+                else
+                {
                 Relaciones = GeneraListaRelacionesCamino(Caminos);
-                //}
+                }
                 foreach (Arco a in Relaciones)
                 {
 
@@ -887,6 +916,10 @@ namespace Editor_de_Grafos
                 if (BanderaDijkstra)
                 {
                     CadAux += "RUTA MÁS CORTA CON DIJKSTRA\n\n\t";
+                }
+                if (BanderaKruskal)
+                {
+                    CadAux += "***********ARBOL DE COSTO MÍNIMO CON KRUSKAL**************\n\n\t";
                 }
                 for (int i = 0; i < l.Count - 1; i++)
                 {
@@ -904,11 +937,16 @@ namespace Editor_de_Grafos
                     CadAux += "\n\nCon un costo de: " + Costo;
 
                 }
+                if (BanderaKruskal)
+                {
+                    CadAux += "\n\t Costo total del árbol: " + k.CostoMinimo;
+                    BanderaKruskal = false;
+                }
                 MessageBox.Show(CadAux);
                 if (BanderaPrim)
                 {
                     string CadPrim = "*********************PRIM*******************\n" +
-                        "\t\tCosto total del árbol: " + Prim.CostoTotal;
+                        "\tCosto total del árbol: " + Prim.CostoTotal;
 
                     MessageBox.Show(CadPrim);
                     BanderaPrim = false;
@@ -994,10 +1032,10 @@ namespace Editor_de_Grafos
 
         private void dijkstraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[,] MatrizPesos = grafo.GeneraMatrizPesos();
+            int[,] Pesos = grafo.GeneraMatrizPesos();
             if (NodoCamino1 != -1)
             {
-                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, MatrizPesos, NodoCamino1 - 1);
+                DijkstraAxel Dijkstra = new DijkstraAxel(grafo.Nodos.Count, Pesos, NodoCamino1 - 1);
                 Caminos = Dijkstra.ALgoritmoDIjkstra();
                 BanderaDijkstra = true;
                 if (Caminos.Count != 0)
@@ -1035,8 +1073,30 @@ namespace Editor_de_Grafos
 
         private void kruskalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Kruskal kruskal = new Kruskal();
-            kruskal.kruskalMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count);
+            BanderaKruskal = true;
+            k = new Kruskal(grafo.Nodos.Count,grafo.GeneraMatrizPesos());
+            Caminos.Clear();
+            Caminos.Add(new List<int>());
+            Caminos[0] = k.kruskalMST();
+            if(Caminos[0].Count > 0)
+            {
+                PintaCamino();
+            }
+            //kruskal.kruskalMST(grafo.GeneraMatrizPesos(), grafo.Nodos.Count);
+        }
+
+        private void floydToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(NodoCamino1 != -1 || NodoCamino2 != -1)
+            {
+                F = new Floyd(grafo.Nodos.Count, grafo.GeneraMatrizPesos());
+                F.ObtenCaminosNodo(NodoCamino1 - 1, NodoCamino2 - 1);
+            }
+            else
+            {
+                MessageBox.Show("Primero tienes que escoger los nodos");
+            }
+           
         }
 
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)

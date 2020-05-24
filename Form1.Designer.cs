@@ -150,14 +150,14 @@
             // adyacenciaToolStripMenuItem
             // 
             this.adyacenciaToolStripMenuItem.Name = "adyacenciaToolStripMenuItem";
-            this.adyacenciaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.adyacenciaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.adyacenciaToolStripMenuItem.Text = "Adyacencia";
             this.adyacenciaToolStripMenuItem.Click += new System.EventHandler(this.AdyacenciaToolStripMenuItem_Click);
             // 
             // pesosToolStripMenuItem
             // 
             this.pesosToolStripMenuItem.Name = "pesosToolStripMenuItem";
-            this.pesosToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pesosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pesosToolStripMenuItem.Text = "Pesos";
             this.pesosToolStripMenuItem.Click += new System.EventHandler(this.PesosToolStripMenuItem_Click);
             // 
@@ -283,6 +283,7 @@
             this.floydToolStripMenuItem.Name = "floydToolStripMenuItem";
             this.floydToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.floydToolStripMenuItem.Text = "Floyd";
+            this.floydToolStripMenuItem.Click += new System.EventHandler(this.floydToolStripMenuItem_Click);
             // 
             // warshallToolStripMenuItem
             // 
