@@ -241,21 +241,21 @@
             // caminosSimplesToolStripMenuItem
             // 
             this.caminosSimplesToolStripMenuItem.Name = "caminosSimplesToolStripMenuItem";
-            this.caminosSimplesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.caminosSimplesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.caminosSimplesToolStripMenuItem.Text = "Caminos Simples";
             this.caminosSimplesToolStripMenuItem.Click += new System.EventHandler(this.caminosSimplesToolStripMenuItem_Click);
             // 
             // circuitoEulerToolStripMenuItem
             // 
             this.circuitoEulerToolStripMenuItem.Name = "circuitoEulerToolStripMenuItem";
-            this.circuitoEulerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.circuitoEulerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.circuitoEulerToolStripMenuItem.Text = "Camino Euler";
             this.circuitoEulerToolStripMenuItem.Click += new System.EventHandler(this.circuitoEulerToolStripMenuItem_Click);
             // 
             // circuitoEulerToolStripMenuItem1
             // 
             this.circuitoEulerToolStripMenuItem1.Name = "circuitoEulerToolStripMenuItem1";
-            this.circuitoEulerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.circuitoEulerToolStripMenuItem1.Size = new System.Drawing.Size(165, 22);
             this.circuitoEulerToolStripMenuItem1.Text = "Circuito_Euler";
             this.circuitoEulerToolStripMenuItem1.Click += new System.EventHandler(this.circuitoEulerToolStripMenuItem1_Click);
             // 
@@ -290,6 +290,7 @@
             this.warshallToolStripMenuItem.Name = "warshallToolStripMenuItem";
             this.warshallToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.warshallToolStripMenuItem.Text = "Warshall";
+            this.warshallToolStripMenuItem.Click += new System.EventHandler(this.warshallToolStripMenuItem_Click);
             // 
             // primToolStripMenuItem
             // 

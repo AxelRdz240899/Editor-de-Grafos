@@ -51,6 +51,7 @@ namespace Editor_de_Grafos
         bool BanderaDijkstra = false;
         bool BanderaKruskal = false;
         bool BanderaFloyd = false;
+        bool BanderaWarshall = false;
         PrimAxel Prim;
         Kruskal k;
         Floyd F;
@@ -210,8 +211,11 @@ namespace Editor_de_Grafos
             Pen Pluma = new Pen(Color.Red, 3);
             Point p1 = new Point(0, 0);
             Point p2 = new Point(0, 0);
+            
+            
             for (int i = 0; i < AuxCaminos.Count; i++)
             {
+
                 List<Nodo> Nodos = BuscaNodosRelaciones(AuxCaminos[i].Origen, AuxCaminos[i].Destino);
                 if (Nodos.Count == 2)
                 {
@@ -263,7 +267,6 @@ namespace Editor_de_Grafos
             }
             return AuxCaminos;
         }
-
         public int ObtenPesoCamino(List<Arco> Camino)
         {
             int Peso = 0;
@@ -926,7 +929,7 @@ namespace Editor_de_Grafos
             {
                 ArcoADibujar = new List<Arco>();
                 IdentificadorCamino++;
-                if (BanderaKruskal)
+                if (BanderaKruskal || BanderaWarshall)
                 {
                     Relaciones = GeneraListaRelacionesPrim(Caminos);
                 }
@@ -958,6 +961,12 @@ namespace Editor_de_Grafos
                 {
                     CadAux += "********RUTA MÁS CORTA CON FLOYD*******\n\n\t";
                 }
+                if (BanderaWarshall)
+                {
+                    CadAux += "\t*******NODOS CONECTADOS POR LA CERRADURA TRANSITIVA OBTENIDA EN WARSHALL************\n\n\t\t";
+                    BanderaWarshall = false;
+                }
+
                 for (int i = 0; i < l.Count - 1; i++)
                 {
                     CadAux += l[i] + "-";
@@ -1136,7 +1145,7 @@ namespace Editor_de_Grafos
                 Caminos.Clear();
                 F = new Floyd(grafo.Nodos.Count, grafo.GeneraMatrizPesos());
                 Caminos = Algoritmos.CaminosSimples(NodoCamino1 - 1, NodoCamino2 - 1, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
-                if(Caminos.Count > 0)
+                if (Caminos.Count > 0)
                 {
                     GeneraCaminoFloyd();
                     if (Caminos[0].Count > 0)
@@ -1153,7 +1162,6 @@ namespace Editor_de_Grafos
             {
                 MessageBox.Show("Primero tienes que escoger los nodos");
             }
-
         }
         public void GeneraCaminoFloyd()
         {
@@ -1180,10 +1188,10 @@ namespace Editor_de_Grafos
         {
             Caminos.Clear();
             int[] AuxDist = Dijkstra.Distancias;
-            foreach(int i in AuxDist)
+            /*foreach(int i in AuxDist)
             {
                 MessageBox.Show("Distancia: " + i);
-            }
+            }*/
             List<List<int>> ListaAuxiliar = new List<List<int>>();
             for(int i = 0; i < grafo.Nodos.Count; i++)
             {
@@ -1226,6 +1234,36 @@ namespace Editor_de_Grafos
                 }
             }
         }
+
+        private void warshallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BanderaWarshall = true;
+            Caminos.Clear();
+            Caminos.Add(new List<int>());
+            Warshall W = new Warshall(grafo.GeneraMatrizAdyacencia());
+            W.CreaCerraduraTransitivaWarshall();
+            for(int i = 0; i < grafo.Nodos.Count; i++)
+            {
+                for(int j = 0; j < grafo.Nodos.Count; j++)
+                {
+                    if(W.MR[i,j] == 1)
+                    {
+                        if(grafo.BuscaRelacion(i + 1 , j + 1) != null)
+                        {
+                            Caminos[0].Add(i + 1);
+                            Caminos[0].Add(j + 1);
+                        }
+                    }
+                }
+            }
+            W.ImprimeCerraduraTransitiva();
+            if (Caminos[0].Count > 0) 
+            {
+                PintaCamino();
+            }
+
+        }
+
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)
         {
             TipoOperacion = 2;

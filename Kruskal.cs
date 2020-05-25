@@ -40,9 +40,7 @@ namespace Editor_de_Grafos
             return i;
         }
 
-        // Does union of i and j. It returns 
-        // false if i and j are already in same 
-        // set. Este método checa si ya existe la relación entre 2 nodos. 
+        // Este método checa si ya existe la relación entre 2 nodos. 
         private void union1(int i, int j)
         {
             int a = EncuentraNodo(i);
@@ -76,7 +74,6 @@ namespace Editor_de_Grafos
                         }
                     }
                 }
-
                 union1(a, b);
                 ArbolKruskal.Add(a + 1);
                 ArbolKruskal.Add(b + 1);
