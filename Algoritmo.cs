@@ -621,22 +621,24 @@ namespace Editor_de_Grafos
             for (int i = 0; i < count; i++)
                 if (MR[n1, i] == 1)
                     GeneraCamino(caminos, new List<int> { n1 }, i, n2, MR, count);
-
             if (n1 == n2)//para circuitos
             {
-                int limpiando = caminos.Count;
-                while (limpiando != 0)
+                if (caminos.Count > 1)
                 {
-                    for (int i = 0; i < caminos.Count; i++)
-                        if (caminos[i].Count < 4)
-                        {
-                            caminos.RemoveAt(i);
-                            break;
-                        }
-                    limpiando--;
+                    int limpiando = caminos.Count;
+                    while (limpiando != 0)
+                    {
+                        for (int i = 0; i < caminos.Count; i++)
+                            if (caminos[i].Count < 4)
+                            {
+                                caminos.RemoveAt(i);
+                                break;
+                            }
+                        limpiando--;
+                    }
                 }
             }
-            if(caminos.Count > 1)
+            if(caminos.Count >= 1)
             {
                 return true;
             }

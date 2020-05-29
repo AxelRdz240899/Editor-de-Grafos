@@ -211,8 +211,8 @@ namespace Editor_de_Grafos
             Pen Pluma = new Pen(Color.Red, 3);
             Point p1 = new Point(0, 0);
             Point p2 = new Point(0, 0);
-            
-            
+
+
             for (int i = 0; i < AuxCaminos.Count; i++)
             {
 
@@ -226,6 +226,11 @@ namespace Editor_de_Grafos
 
         public void DibujaArco(List<Arco> a)
         {
+            double tg;
+            double atg;
+            int az;
+            int b;
+            Pen pluma = new Pen(Color.Red, 4);
             if (a != null)
             {
                 foreach (Arco ar in a)
@@ -233,7 +238,18 @@ namespace Editor_de_Grafos
                     List<Nodo> Nodos = BuscaNodosRelaciones(ar.Origen, ar.Destino);
                     if (Nodos.Count == 2)
                     {
-                        Graficos.DrawLine(new Pen(Color.Red, 3), Nodos[0].Centro, Nodos[1].Centro);
+                        tg = (double)(Nodos[0].Centro.Y - Nodos[1].Centro.Y) / (Nodos[1].Centro.X - Nodos[0].Centro.X);
+                        atg = Math.Atan(tg);
+                        az = (int)((50 * .53) * Math.Cos(atg));
+                        b = (int)((50 * .53) * Math.Sin(atg));
+                        if (Nodos[0].Centro.X < Nodos[1].Centro.X)
+                        {
+                            az *= -1;
+                            b *= -1;
+                        }
+                        Point p = new Point(Nodos[1].Centro.X + az, Nodos[1].Centro.Y - b);
+                        Point p2 = new Point(Nodos[0].Centro.X - az, Nodos[0].Centro.Y + b);
+                        Graficos.DrawLine(pluma, p2, p);
                     }
                 }
             }
@@ -754,43 +770,32 @@ namespace Editor_de_Grafos
         private void esCicloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int Count = 0;
-            if (grafo.Dirigido == true)
-            {
-                if (grafo.EsCiclo())
-                {
-                    MessageBox.Show("El grafo es ciclico");
-                }
-                else
-                {
-                    MessageBox.Show("El grafo no es ciclico");
-                }
-            }
-            else if (grafo.Dirigido == false)
-            {
-                bool[] Res = new bool[grafo.Nodos.Count];
-                for (int i = 0; i < grafo.Nodos.Count; i++)
-                {
-                    Res[i] = Algoritmos.GrafoContieneCiclo(i, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
-                }
-                bool Ciclico = true;
-                foreach (bool b in Res)
-                {
-                    if (b == false)
-                    {
-                        Ciclico = false;
-                        break;
-                    }
-                }
-                if (Ciclico)
-                {
-                    MessageBox.Show("El grafo es ciclico ");
-                }
-                else
-                {
-                    MessageBox.Show("El grafo no es ciclico");
-                }
 
+            bool[] Res = new bool[grafo.Nodos.Count];
+            for (int i = 0; i < grafo.Nodos.Count; i++)
+            {
+                Res[i] = Algoritmos.GrafoContieneCiclo(i,i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
+                //MessageBox.Show("Ciclo Encontrado de " + i + "a: " + i + ": " + Res[i]);
             }
+            bool Ciclico = true;
+            foreach (bool b in Res)
+            {
+                if (b == false)
+                {
+                    Ciclico = false;
+                    break;
+                }
+            }
+            if (Ciclico)
+            {
+                MessageBox.Show("El grafo es ciclico ");
+            }
+            else
+            {
+                MessageBox.Show("El grafo no es ciclico");
+            }
+
+
 
         }
 
@@ -963,7 +968,7 @@ namespace Editor_de_Grafos
                 }
                 if (BanderaWarshall)
                 {
-                    CadAux += "\t*******NODOS CONECTADOS POR LA CERRADURA TRANSITIVA OBTENIDA EN WARSHALL************\n\n\t\t";
+                    CadAux += "\t*******NODOS CONECTADOS POR LA CERRADURA TRANSITIVA \tOBTENIDA EN WARSHALL************\n\n\t\t";
                     BanderaWarshall = false;
                 }
 
@@ -1193,7 +1198,7 @@ namespace Editor_de_Grafos
                 MessageBox.Show("Distancia: " + i);
             }*/
             List<List<int>> ListaAuxiliar = new List<List<int>>();
-            for(int i = 0; i < grafo.Nodos.Count; i++)
+            for (int i = 0; i < grafo.Nodos.Count; i++)
             {
                 //MessageBox.Show("Caminos del nodo: " + (i + 1));
                 ListaAuxiliar = Algoritmos.CaminosSimples(NodoCamino1 - 1, i, grafo.GeneraMatrizAdyacencia(), grafo.Nodos.Count);
@@ -1207,7 +1212,7 @@ namespace Editor_de_Grafos
 
                         int peso = ObtenPesoCamino(Camino);
                         //MessageBox.Show("PESO: " + peso + " AuxDist: " + AuxDist[i] + "en I:" + i);
-                        
+
                         //MessageBox.Show("PESO: " + peso);
                         if (peso == AuxDist[i])
                         {
@@ -1216,7 +1221,7 @@ namespace Editor_de_Grafos
                             Caminos.Add(c);
                             break;
                         }
-                        
+
                     }
                 }
             }
@@ -1242,13 +1247,13 @@ namespace Editor_de_Grafos
             Caminos.Add(new List<int>());
             Warshall W = new Warshall(grafo.GeneraMatrizAdyacencia());
             W.CreaCerraduraTransitivaWarshall();
-            for(int i = 0; i < grafo.Nodos.Count; i++)
+            for (int i = 0; i < grafo.Nodos.Count; i++)
             {
-                for(int j = 0; j < grafo.Nodos.Count; j++)
+                for (int j = 0; j < grafo.Nodos.Count; j++)
                 {
-                    if(W.MR[i,j] == 1)
+                    if (W.MR[i, j] == 1)
                     {
-                        if(grafo.BuscaRelacion(i + 1 , j + 1) != null)
+                        if (grafo.BuscaRelacion(i + 1, j + 1) != null)
                         {
                             Caminos[0].Add(i + 1);
                             Caminos[0].Add(j + 1);
@@ -1257,13 +1262,11 @@ namespace Editor_de_Grafos
                 }
             }
             W.ImprimeCerraduraTransitiva();
-            if (Caminos[0].Count > 0) 
+            if (Caminos[0].Count > 0)
             {
                 PintaCamino();
             }
-
         }
-
         private void BT_AñadirRelacion_Click(object sender, EventArgs e)
         {
             TipoOperacion = 2;

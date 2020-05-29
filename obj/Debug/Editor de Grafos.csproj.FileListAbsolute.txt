@@ -72,3 +72,25 @@ F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Edito
 F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
 F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.exe
 F:\Entrega Grafos Axel López Rodríguez\editor\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel\editor\Editor de Grafos\obj\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe.config
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\bin\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\bin\Debug\Editor de Grafos.pdb
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csprojAssemblyReference.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form1.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Form2.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor_de_Grafos.Properties.Resources.resources
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.GenerateResource.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor de Grafos.csproj.CoreCompileInputs.cache
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor de Grafos.exe
+C:\Users\narut\Desktop\Entrega 5to Parcial Grafos Axel López Rodríguez Grafos\editor\Editor de Grafos\obj\Debug\Editor de Grafos.pdb

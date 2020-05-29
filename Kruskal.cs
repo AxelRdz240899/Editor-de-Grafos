@@ -77,7 +77,7 @@ namespace Editor_de_Grafos
                 union1(a, b);
                 ArbolKruskal.Add(a + 1);
                 ArbolKruskal.Add(b + 1);
-                CadAux += "Relacion : " + edge_count++ + " :(" + a + " , " + b + ")" + " costo: " + min + "\n";
+                CadAux += "Relacion : " + edge_count++ + " :(" + (a + 1) + " , " + (b + 1) + ")" + " costo: " + min + "\n";
                 mincost += min;
             }
             CadAux += "Costo minimo: " + mincost + "\n";
